@@ -1,16 +1,20 @@
+<input id="username" placeholder="이름 입력">
+<button onclick="enter()">입장하기</button>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login</title>
-</head>
-<body>
-  <h2>Login</h2>
-  <input id="email" placeholder="Email"><br>
-  <input id="password" type="password" placeholder="Password"><br>
-  <button onclick="login()">Login</button>
+<script>
+function enter() {
+  const name = document.getElementById("username").value;
 
-  <script src="js/firebase.js"></script>
-  <script src="js/auth.js"></script>
-</body>
-</html>
+  if (!name) {
+    alert("이름 입력");
+    return;
+  }
+
+  localStorage.setItem("username", name);
+  localStorage.setItem("role", "publisher");
+
+  alert("로그인됨: " + name);
+
+  location.href = "index.html";
+}
+</script>
