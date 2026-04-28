@@ -1,36 +1,21 @@
 <h2>봉사 기록</h2>
-
 <input id="date" type="date"><br><br>
 <input id="time" placeholder="시간"><br><br>
 <input id="count" placeholder="연구 수"><br><br>
 
 <button onclick="save()">저장</button>
-<button onclick="goHome()">홈으로</button>
 
 <script>
-const name = localStorage.getItem("username");
-
-if (!name) {
-  location.href = "login.html";
-}
-
 function save() {
-  const data = {
-    name: name,
+  let records = JSON.parse(localStorage.getItem("records") || "[]");
+
+  records.push({
     date: document.getElementById("date").value,
     time: document.getElementById("time").value,
     count: document.getElementById("count").value
-  };
-
-  let records = JSON.parse(localStorage.getItem("records") || "[]");
-  records.push(data);
+  });
 
   localStorage.setItem("records", JSON.stringify(records));
-
-  alert("저장 완료");
-}
-
-function goHome() {
-  location.href = "index.html";
+  alert("저장됨");
 }
 </script>
