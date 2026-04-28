@@ -1,12 +1,52 @@
 
 <h2 id="welcome"></h2>
 
+<div id="menu"></div>
+
+<button onclick="logout()">로그아웃</button>
+
 <script>
 const name = localStorage.getItem("username");
+const role = localStorage.getItem("role");
 
 if (!name) {
   location.href = "login.html";
-} else {
-  document.getElementById("welcome").innerText = name + "님 환영합니다";
+}
+
+document.getElementById("welcome").innerText = name + "님 환영합니다 (" + role + ")";
+
+const menu = document.getElementById("menu");
+
+if (role === "publisher") {
+  menu.innerHTML = `
+    <h3>전도인 메뉴</h3>
+    <button onclick="alert('봉사기록 입력')">봉사기록</button>
+  `;
+}
+
+if (role === "leader") {
+  menu.innerHTML = `
+    <h3>인도자 메뉴</h3>
+    <button onclick="alert('구역 배정')">구역 배정</button>
+  `;
+}
+
+if (role === "group") {
+  menu.innerHTML = `
+    <h3>집단관리자 메뉴</h3>
+    <button onclick="alert('보고 확인')">보고 보기</button>
+  `;
+}
+
+if (role === "admin") {
+  menu.innerHTML = `
+    <h3>통합관리자 메뉴</h3>
+    <button onclick="alert('전체 통계')">통계</button>
+  `;
+}
+
+function logout() {
+  localStorage.clear();
+  location.href = "login.html";
 }
 </script>
