@@ -1,20 +1,17 @@
-<input id="username" placeholder="이름 입력">
-<button onclick="enter()">입장하기</button>
+<h2 id="welcome"></h2>
+<button onclick="logout()">로그아웃</button>
 
 <script>
-function enter() {
-  const name = document.getElementById("username").value;
+const name = localStorage.getItem("username");
 
-  if (!name) {
-    alert("이름 입력");
-    return;
-  }
+if (!name) {
+  location.href = "login.html";
+} else {
+  document.getElementById("welcome").innerText = name + "님 환영합니다";
+}
 
-  localStorage.setItem("username", name);
-  localStorage.setItem("role", "publisher");
-
-  alert("로그인됨: " + name);
-
-  location.href = "index.html";
+function logout() {
+  localStorage.clear();
+  location.href = "login.html";
 }
 </script>
