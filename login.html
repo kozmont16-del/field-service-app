@@ -1,18 +1,18 @@
-<h2 id="welcome"></h2>
-<button onclick="logout()">로그아웃</button>
+<input id="username" placeholder="이름 입력">
+<button onclick="enter()">입장하기</button>
 
 <script>
-const name = localStorage.getItem("username");
+alert("테스트"); // 👉 이제 실행됨
 
-if (!name) {
-  location.href = "login.html";
-} else {
-  document.getElementById("welcome").innerText = name + "님 환영합니다";
-}
+function enter() {
+  const name = document.getElementById("username").value;
 
-function logout() {
-  localStorage.clear();
-  location.href = "login.html";
+  if (!name) {
+    alert("이름 입력");
+    return;
+  }
+
+  localStorage.setItem("username", name);
+  location.href = "index.html";
 }
 </script>
-alert("테스트");
