@@ -18,10 +18,14 @@ document.getElementById("welcome").innerText = name + "님 환영합니다 (" + 
 const menu = document.getElementById("menu");
 
 if (role === "publisher") {
-  menu.innerHTML = `
-    <h3>전도인 메뉴</h3>
-    <button onclick="alert('봉사기록 입력')">봉사기록</button>
-  `;
+ <h3>전도인 메뉴</h3>
+  <button onclick="go('record.html')">봉사기록 입력</button>
+  <button onclick="go('record-list.html')">내 기록 보기</button>
+`;
+}
+
+function go(page) {
+  location.href = page;
 }
 
 if (role === "leader") {
