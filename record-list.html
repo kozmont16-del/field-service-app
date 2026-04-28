@@ -1,0 +1,25 @@
+<h2>내 봉사 기록</h2>
+
+<div id="list"></div>
+
+<button onclick="goHome()">홈으로</button>
+
+<script>
+const name = localStorage.getItem("username");
+
+let records = JSON.parse(localStorage.getItem("records") || "[]");
+
+let html = "";
+
+records
+  .filter(r => r.name === name)
+  .forEach(r => {
+    html += `<p>${r.date} / ${r.time}시간 / ${r.count}건</p>`;
+  });
+
+document.getElementById("list").innerHTML = html;
+
+function goHome() {
+  location.href = "index.html";
+}
+</script>
